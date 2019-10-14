@@ -13,16 +13,25 @@ const createAnswerDOM = decision => {
   return answer
 }
 
-const createDOMNode = (label, isNormal = false) => {
+const createDOMNode = (label, node = null) => {
   const promptWrapper = document.createElement('li')
 
-  const text = isNormal ? 'Is it a ' + label + '?' : label
+  let text
+  if (label === 'Animal') text = 'Is it an animal?'
+  else if (node)
+    text =
+      'Is it ' +
+      (node.left || node.right ? '' : 'aeiou'.includes(label.charAt(0)) ? 'an ' : 'a ') +
+      label +
+      '?'
+  else text = label
 
   promptWrapper.classList.add('prompt-wrapper')
 
   let count = 0
   const printInterval = setInterval(() => {
     promptWrapper.innerHTML = text.substring(0, count)
+    promptsWrapper.scrollTop = promptsWrapper.scrollHeight
 
     if (count === text.length) clearInterval(printInterval)
     count++
@@ -49,7 +58,7 @@ class Node {
   }
 
   getElement = () => {
-    return createDOMNode(this.label, this.isNormal)
+    return createDOMNode(this.label, this.isNormal ? this : null)
   }
 }
 

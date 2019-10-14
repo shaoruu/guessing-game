@@ -14,7 +14,6 @@ let prevRoundPromptEle
 function nextRound(text) {
   let ele = text ? createDOMNode(text) : guesser.getCurrent().getElement()
   promptsWrapper.appendChild(ele)
-  promptsWrapper.scrollTop = promptsWrapper.scrollHeight
   prevRoundPromptEle = ele
 }
 
@@ -49,7 +48,9 @@ const keyUpHandler = e => {
         inputInput.focus()
         inputState = TYPING
         nextRound('What is it then? (It is a...)')
-      } else nextRound()
+      } else if (!guesser.ended) {
+        nextRound()
+      }
     }
   } else {
     if (keyCode === 13) {
@@ -68,8 +69,6 @@ const keyUpHandler = e => {
 
         inputSection.innerHTML = ''
         inputSection.appendChild(inputYesNo)
-
-        console.log('wtf')
 
         guesser.fail()
         nextRound()

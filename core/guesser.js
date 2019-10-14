@@ -79,7 +79,14 @@ class Guesser {
   load = JSONObj => {
     promptsWrapper.innerHTML = ''
     this.root = loadNode(JSONObj)
-    console.log(JSONObj)
+
+    inputSection.innerHTML = ''
+    inputSection.appendChild(inputYesNo)
+
+    inputState = YESNO
+
+    prompt = null
+    answer = null
 
     this.curr = this.root
 
