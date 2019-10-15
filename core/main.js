@@ -18,7 +18,8 @@ function nextRound(text) {
 }
 
 function start() {
-  nextRound()
+  promptsWrapper.appendChild(createDOMNode("Let me guess what you're thinking..."))
+  setTimeout(nextRound, 1000)
 }
 
 const YESNO = 'yesno'
