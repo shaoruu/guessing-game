@@ -39,7 +39,7 @@ body {
   align-content: flex-start;
   justify-content: flex-start;
   list-style: none;
-  overflow: scroll;
+  overflow: hidden;
   padding-bottom: 0;
 }
 
